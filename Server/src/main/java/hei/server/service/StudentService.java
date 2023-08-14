@@ -31,7 +31,7 @@ public class StudentService {
     public Student addNewStudent(Student std) {
         List<Student> students = studentRepository.getAll();
         Integer lastId = students.size()+1;
-        Student new_student = new Student(lastId, std.getRefStudent(), std.getFirstName(), std.getLastName(), std.getEmail(), std.getActive(), std.getIdGroup());
+        Student new_student = new Student(lastId, std.getRefStudent(), std.getFirstName(), std.getLastName(), std.getEmail(), std.getGender(), std.getActive(), std.getIdGroup());
         return studentRepository.add(new_student);
     }
 
@@ -45,6 +45,9 @@ public class StudentService {
         }
         if (!Objects.equals(oldStudent.getRefStudent(), oldStudent.getRefStudent())) {
             oldStudent.setRefStudent(student.getRefStudent());
+        }
+        if (!Objects.equals(oldStudent.getGender(), student.getGender())) {
+            oldStudent.setEmail(student.getGender());
         }
         if (!Objects.equals(oldStudent.getEmail(), student.getEmail())) {
             oldStudent.setEmail(student.getEmail());

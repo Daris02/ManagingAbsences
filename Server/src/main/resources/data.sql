@@ -14,6 +14,7 @@ CREATE TABLE "student" (
        first_name VARCHAR(200) NOT NULL,
        last_name VARCHAR(200) NOT NULL,
        email VARCHAR(200) NOT NULL UNIQUE,
+       gender CHAR(1) NOT NULL,
        active BOOLEAN DEFAULT true,
        id_group INT REFERENCES "group"(id)
 );

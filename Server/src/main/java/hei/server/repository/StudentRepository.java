@@ -1,7 +1,5 @@
 package hei.server.repository;
 
-import hei.server.DataBase.StatementDB;
-import hei.server.model.Group;
 import hei.server.model.Student;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static hei.server.DataBase.StatementDB.createStatement;
 
 @Repository
 public class StudentRepository {
@@ -18,7 +18,7 @@ public class StudentRepository {
         List<Student> allStudent = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = StatementDB.createStatement().executeQuery(sql);
+            ResultSet resultSet = createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudent.add(new Student(
@@ -27,14 +27,15 @@ public class StudentRepository {
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getString("email"),
+                        resultSet.getString("gender"),
                         resultSet.getBoolean("active"),
                         resultSet.getInt("id_group"))
                 );
             }
+            resultSet.close();
             return allStudent;
-
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -43,7 +44,7 @@ public class StudentRepository {
         String sql = "SELECT * FROM \"student\" WHERE id = " + id + " ;";
 
         try {
-            ResultSet resultSet = StatementDB.createStatement().executeQuery(sql);
+            ResultSet resultSet = createStatement().executeQuery(sql);
 
             if (resultSet.next()) {
                 return new Student(
@@ -52,12 +53,13 @@ public class StudentRepository {
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getString("email"),
+                        resultSet.getString("gender"),
                         resultSet.getBoolean("active"),
                         resultSet.getInt("id_group"));
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new Student();
     }
@@ -69,12 +71,13 @@ public class StudentRepository {
                     " '" + student.getFirstName() + "', " +
                     " '" + student.getLastName() + "', " +
                     " '" + student.getEmail() + "', " +
+                    " '" + student.getGender() + "', " +
                     student.getActive() + ", " +
                     student.getIdGroup() + "); ";
-            StatementDB.createStatement().executeUpdate(sql);
+            createStatement().executeUpdate(sql);
             return student;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new Student();
     }
@@ -86,13 +89,15 @@ public class StudentRepository {
                     "', first_name = '" + student.getFirstName() +
                     "', last_name = '" + student.getLastName() +
                     "', email = '" + student.getEmail() +
+                    "', gender = '" + student.getGender() +
                     "', active = " + student.getActive() +
                     ", id_group = " + student.getIdGroup() +
                     " WHERE id = " + student.getId() + " ;";
-            StatementDB.createStatement().executeUpdate(sql);
+
+            createStatement().executeUpdate(sql);
             return getById(student.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return getById(student.getId());
     }
@@ -101,9 +106,9 @@ public class StudentRepository {
         try {
             String sql = "DELETE FROM \"group\" WHERE id = " + id + " ;";
 
-            StatementDB.createStatement().executeUpdate(sql);
+            createStatement().executeUpdate(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
