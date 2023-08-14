@@ -25,5 +25,5 @@ Or run app on directory ``Server`` execute command following :
 
 ```sh
 $ cd Server
-$ mvn run install
+$ mvn spring-boot:run
 ```
