@@ -4,10 +4,8 @@ This repository contain the project who have them managening absence in school.
 For create web server (REST API) using JDBC to connect to database.
 <br/>
 
-## Database Model
-### Last version
-![image_mcd](database.v2.png)
-### First version
+## MCD
+
 ![image_mcd](database.png)
 
 <br/>
