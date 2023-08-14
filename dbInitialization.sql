@@ -21,6 +21,7 @@ CREATE TABLE "student" (
     first_name VARCHAR(200) NOT NULL,
     last_name VARCHAR(200) NOT NULL,
     email VARCHAR(200) NOT NULL UNIQUE,
+    gender CHAR(1) NOT NULL,
     active BOOLEAN DEFAULT true,
     id_group INT REFERENCES "group"(id)
 );
@@ -53,13 +54,13 @@ CREATE TABLE "exit" (
 
     -- Insert "student"
     INSERT INTO "student" VALUES 
-        (1, 'STD22001', 'Alice', 'Vianay', 'alice@gmail.com', true, 1),
-        (2, 'STD22002', 'Bob', 'Crick', 'bob@gmail.com', true, 2),
-        (3, 'STD22003', 'Clark', 'Kent', 'clark@gmail.com', true, 3),
-        (4, 'STD22004', 'Derek', 'Phil', 'derek@gmail.com', true, 4);
+        (1, 'STD22001', 'Alice', 'Vianay', 'alice@gmail.com', 'F', true, 1),
+        (2, 'STD22002', 'Bob', 'Crick', 'bob@gmail.com', 'M', true, 2),
+        (3, 'STD22003', 'Clark', 'Kent', 'clark@gmail.com', 'M', true, 3),
+        (4, 'STD22004', 'Derek', 'Phil', 'derek@gmail.com', 'M', true, 4);
     -- -----------------------------------------
         INSERT INTO "student" VALUES 
-            (5, 'STD22005', 'Eva', 'Liones', 'eva@gmail.com', true, 1);
+            (5, 'STD22005', 'Eva', 'Liones', 'eva@gmail.com', 'F', true, 1);
     -- -----------------------------------------
 
     -- Inser "register"
