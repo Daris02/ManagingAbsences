@@ -19,6 +19,8 @@ This project use and you need if you would like clone that :
 -   Apache Maven 1.8 or higher
 
 ### Installation
+Befor all, you should need execute `data.sql`  ( in ``/Server/src/main/resources/data.sql``)
+
 If you have a IDE, just run this app on Server class `Server.java`
 
 Or run app on directory ``Server`` execute command following :

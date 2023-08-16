@@ -1,4 +1,4 @@
--- Active: 1690631579809@@127.0.0.1@5432@hei
+-- Active: 1692177352814@@localhost@5432@hei
 
 DROP DATABASE IF EXISTS hei_absence;
 
@@ -57,11 +57,9 @@ CREATE TABLE "exit" (
         (1, 'STD22001', 'Alice', 'Vianay', 'alice@gmail.com', 'F', true, 1),
         (2, 'STD22002', 'Bob', 'Crick', 'bob@gmail.com', 'M', true, 2),
         (3, 'STD22003', 'Clark', 'Kent', 'clark@gmail.com', 'M', true, 3),
-        (4, 'STD22004', 'Derek', 'Phil', 'derek@gmail.com', 'M', true, 4);
-    -- -----------------------------------------
-        INSERT INTO "student" VALUES 
-            (5, 'STD22005', 'Eva', 'Liones', 'eva@gmail.com', 'F', true, 1);
-    -- -----------------------------------------
+        (4, 'STD22004', 'Derek', 'Phil', 'derek@gmail.com', 'M', true, 4),
+        (5, 'STD22005', 'Eva', 'Stone', 'eva@gmail.com', 'F', true, 1);
+        
 
     -- Inser "register"
         -- Insert for entry date
