@@ -3,6 +3,7 @@ package hei.server.model;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -13,6 +14,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 public class Register implements Serializable {
     private Integer id;
-    private LocalDate date;
+    private Timestamp date;
     private Integer idStudent;
 }
