@@ -41,7 +41,7 @@ INSERT INTO "student" VALUES
 -- Create table "entry"
 CREATE TABLE "entry" (
         id SERIAL PRIMARY KEY,
-        date TIMESTAMP DEFAULT current_timestamp,
+        date TIMESTAMP WITH TIME ZONE DEFAULT current_timestamp,
         id_student INT REFERENCES "student"(id)
 );
 
@@ -58,7 +58,7 @@ INSERT INTO "entry" (date, id_student) VALUES
 -- Create table "exit"
 CREATE TABLE "exit" (
         id SERIAL PRIMARY KEY,
-        date TIMESTAMP DEFAULT current_timestamp,
+        date TIMESTAMP WITH TIME ZONE DEFAULT current_timestamp,
         id_student INT REFERENCES "student"(id)
 );
 
