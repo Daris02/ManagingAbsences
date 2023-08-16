@@ -18,19 +18,20 @@ public class RegisterService {
     }
 
     public List<Register> findAllRegisters(String type) {
-        if (!type.equals("entry") || !type.equals("exit")) {
-            type = "entry";
-        }
         return registerRepository.getAll(type);
     }
 
+    public void addRegister(Integer id, String type) {
+        registerRepository.addRegister(id, type);
+    }
+
     public List<Student> findAllStudentsPresent(Register register) {
-        String datetime = register.getDate().toString().replace("T", " ");
+        String datetime = register.getDate().toString();
         return registerRepository.getAllStudentsPresent(datetime);
     }
 
     public List<Student> findAllStudentsAbsent(Register register) {
-        String datetime = register.getDate().toString().replace("T", " ");
+        String datetime = register.getDate().toString();
         return registerRepository.getAllStudentsAbsent(datetime);
     }
 }

@@ -35,6 +35,15 @@ public class RegisterRepository {
         return new ArrayList<>();
     }
 
+    public void addRegister(Integer id, String type) {
+        String sql = "INSERT INTO "+ type +" (id_student) VALUES (" + id + "); ";
+        try {
+            createStatement().executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public List<Student> getAllStudentsPresent(String datetime) {
         String sql = "SELECT " +
                         "    st.* " +

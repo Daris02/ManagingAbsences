@@ -23,6 +23,12 @@ public class RegisterController {
         return registerService.findAllRegisters(type);
     }
 
+    @PostMapping("/{id}/{type}")
+    public String addRegister(@PathVariable Integer id,@PathVariable String type) {
+        registerService.addRegister(id, type);
+        return "Add student to " + type + " successfully";
+    }
+
     @GetMapping("/present")
     public List<Student> findAllStudentsPresent(@RequestBody Register register) {
         return registerService.findAllStudentsPresent(register);
