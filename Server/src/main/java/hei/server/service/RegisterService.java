@@ -25,13 +25,13 @@ public class RegisterService {
         registerRepository.addRegister(id, type);
     }
 
-    public List<Student> findAllStudentsPresent(Register register) {
-        String datetime = register.getDate().toString();
+    public List<Student> findAllStudentsPresent(String datetime) {
+        datetime = datetime.replace("T", " ");
         return registerRepository.getAllStudentsPresent(datetime);
     }
 
-    public List<Student> findAllStudentsAbsent(Register register) {
-        String datetime = register.getDate().toString();
+    public List<Student> findAllStudentsAbsent(String datetime) {
+        datetime = datetime.replace("T", " ");
         return registerRepository.getAllStudentsAbsent(datetime);
     }
 }
