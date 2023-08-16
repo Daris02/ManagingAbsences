@@ -1,7 +1,8 @@
 package hei.server.repository;
 
-import hei.server.DataBase.StatementDB;
+import static hei.server.DataBase.StatementDB.createStatement;
 import hei.server.model.Register;
+import hei.server.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -12,23 +13,105 @@ import java.util.List;
 @Repository
 public class RegisterRepository {
     public List<Register> getAll(String type) {
-        String sql = "SELECT * FROM "+ type +" ORDER BY date ;";
+        String sql = "SELECT * FROM "+ type +" ORDER BY date ; ";
 
         List<Register> allRegisters = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = StatementDB.createStatement().executeQuery(sql);
+            ResultSet resultSet = createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allRegisters.add(new Register(
                         resultSet.getInt("id"),
-                        resultSet.getDate("date").toLocalDate(),
+                        resultSet.getTimestamp("date"),
                     resultSet.getInt("id_student")
                 ));
             }
             return allRegisters;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return new ArrayList<>();
+    }
+
+    public List<Student> getAllStudentsPresentToDay(String datetime) {
+        String sql = "SELECT " +
+                        "    st.* " +
+                        "FROM \"student\" st " +
+                        "    INNER JOIN \"entry\" en ON st.id = en.id_student " +
+                        "    INNER JOIN \"exit\" ex ON st.id = ex.id_student " +
+                        "WHERE " +
+                        "    date_part('hour', ex.date) >= date_part('hour', en.date) + 3" +
+                        "    AND date_part('day', ex.date) = date_part('day', en.date)" +
+                        "    AND date_part('month', ex.date) = date_part('month', en.date)" +
+                        "    AND date_part('year', ex.date) = date_part('year', en.date)" +
+                        "    AND date_part('year', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
+                        "    AND date_part('month', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
+                        "    AND date_part('day', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
+                        "    ;";
+
+        List<Student> allStudents = new ArrayList<>(0);
+
+        try {
+            ResultSet resultSet = createStatement().executeQuery(sql);
+
+            while (resultSet.next()) {
+                allStudents.add(new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("ref_student"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("gender"),
+                        resultSet.getBoolean("active"),
+                        resultSet.getInt("id_group"))
+                );
+            }
+            return allStudents;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return new ArrayList<>();
+    }
+
+    public List<Student> getAllStudentsAbsentToDay(String datetime) {
+        String sql = "SELECT" +
+                "    st.* " +
+                "FROM \"student\" st " +
+                "    FULL OUTER JOIN \"entry\" en ON st.id = en.id_student " +
+                "WHERE " +
+                "    st.id NOT IN (" +
+                "        SELECT" +
+                "            st.id" +
+                "        FROM \"student\" st" +
+                "            INNER JOIN \"entry\" en ON st.id = en.id_student " +
+                "        WHERE date_part('year', en.date) = date_part('year', " + datetime + "::TIMESTAMP)" +
+                "        AND date_part('month', en.date) = date_part('month', " + datetime + "::TIMESTAMP)" +
+                "        AND date_part('day', en.date) = date_part('day', " + datetime + "::TIMESTAMP)" +
+                "  );";
+
+        List<Student> allStudents = new ArrayList<>(0);
+
+        try {
+            ResultSet resultSet = createStatement().executeQuery(sql);
+
+            while (resultSet.next()) {
+                allStudents.add(new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("ref_student"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("gender"),
+                        resultSet.getBoolean("active"),
+                        resultSet.getInt("id_group"))
+                );
+            }
+            return allStudents;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return new ArrayList<>();
