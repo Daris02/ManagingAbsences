@@ -51,7 +51,8 @@ INSERT INTO "entry" (date, id_student) VALUES
         ('2023-09-01 07:30:00', 1),
         ('2023-09-01 07:45:00', 2),
         ('2023-09-01 07:53:00', 3),
-        ('2023-09-01 08:05:00', 4);
+        ('2023-09-01 08:05:00', 4),
+        ('2023-09-02 08:02:00', 5);
 
 -----------------------------------
 -- Create table "exit"
@@ -69,20 +70,3 @@ INSERT INTO "exit" (date, id_student) VALUES
         ('2023-09-01 11:33:00', 3),
         ('2023-09-01 12:05:00', 4);
 
------------------------------------
--- SELECT
--- Ce qui sont present durant 3 heure ou plus pour aujourd'hui
-SELECT
-    st.*
-FROM "student" st
-         INNER JOIN "entry" en ON st.id = en.id_student
-         INNER JOIN "exit" ex ON st.id = ex.id_student
-WHERE
-        date_part('hour', ex.date) >= date_part('hour', en.date) + 3
-  AND date_part('day', ex.date) = date_part('day', en.date)
-  AND date_part('month', ex.date) = date_part('month', en.date)
-  AND date_part('year', ex.date) = date_part('year', en.date)
-  AND date_part('year', current_timestamp) = date_part('year', en.date)
--- AND date_part('month', current_timestamp) = date_part('month', en.date)
--- AND date_part('day', current_timestamp) = date_part('day', en.date)
-;
