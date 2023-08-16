@@ -17,6 +17,9 @@ public class RegisterService {
     }
 
     public List<Register> findAllRegisters(String type) {
+        if (!type.equals("entry") || !type.equals("exit")) {
+            type = "entry";
+        }
         return registerRepository.getAll(type);
     }
 }
