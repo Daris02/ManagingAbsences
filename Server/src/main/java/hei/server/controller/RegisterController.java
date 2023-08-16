@@ -1,12 +1,10 @@
 package hei.server.controller;
 
 import hei.server.model.Register;
+import hei.server.model.Student;
 import hei.server.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,15 @@ public class RegisterController {
     @GetMapping("/{type}")
     public List<Register> findAllRegisters(@PathVariable String type) {
         return registerService.findAllRegisters(type);
+    }
+
+    @GetMapping("/present")
+    public List<Student> findAllStudentsPresent(@RequestBody Register register) {
+        return registerService.findAllStudentsPresent(register);
+    }
+
+    @GetMapping("/absent")
+    public List<Student> findAllStudentsAbsent(@RequestBody Register register) {
+        return registerService.findAllStudentsAbsent(register);
     }
 }

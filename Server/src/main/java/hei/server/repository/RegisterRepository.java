@@ -35,20 +35,19 @@ public class RegisterRepository {
         return new ArrayList<>();
     }
 
-    public List<Student> getAllStudentsPresentToDay(String datetime) {
+    public List<Student> getAllStudentsPresent(String datetime) {
         String sql = "SELECT " +
                         "    st.* " +
                         "FROM \"student\" st " +
                         "    INNER JOIN \"entry\" en ON st.id = en.id_student " +
-                        "    INNER JOIN \"exit\" ex ON st.id = ex.id_student " +
+                        "    FULL OUTER JOIN \"exit\" ex ON st.id = ex.id_student " +
                         "WHERE " +
-                        "    date_part('hour', ex.date) >= date_part('hour', en.date) + 3" +
-                        "    AND date_part('day', ex.date) = date_part('day', en.date)" +
-                        "    AND date_part('month', ex.date) = date_part('month', en.date)" +
-                        "    AND date_part('year', ex.date) = date_part('year', en.date)" +
-                        "    AND date_part('year', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
-                        "    AND date_part('month', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
-                        "    AND date_part('day', " + datetime + "::TIMESTAMP) = date_part('year', en.date)" +
+                        "    ((st.id IN (" +
+                        "        SELECT entry.id_student FROM entry" +
+                        "    )) OR (date_part('hour', ex.date) >= date_part('hour', en.date) + 3))" +
+                        "    AND date_part('year', '" + datetime + "'::TIMESTAMP) = date_part('year', en.date)" +
+                        "    AND date_part('month', '" + datetime + "'::TIMESTAMP) = date_part('month', en.date)" +
+                        "    AND date_part('day', '" + datetime + "'::TIMESTAMP) = date_part('day', en.date)" +
                         "    ;";
 
         List<Student> allStudents = new ArrayList<>(0);
@@ -76,7 +75,7 @@ public class RegisterRepository {
         return new ArrayList<>();
     }
 
-    public List<Student> getAllStudentsAbsentToDay(String datetime) {
+    public List<Student> getAllStudentsAbsent(String datetime) {
         String sql = "SELECT" +
                 "    st.* " +
                 "FROM \"student\" st " +
@@ -87,9 +86,9 @@ public class RegisterRepository {
                 "            st.id" +
                 "        FROM \"student\" st" +
                 "            INNER JOIN \"entry\" en ON st.id = en.id_student " +
-                "        WHERE date_part('year', en.date) = date_part('year', " + datetime + "::TIMESTAMP)" +
-                "        AND date_part('month', en.date) = date_part('month', " + datetime + "::TIMESTAMP)" +
-                "        AND date_part('day', en.date) = date_part('day', " + datetime + "::TIMESTAMP)" +
+                "        WHERE date_part('year', en.date) = date_part('year', '" + datetime + "'::TIMESTAMP)" +
+                "        AND date_part('month', en.date) = date_part('month', '" + datetime + "'::TIMESTAMP)" +
+                "        AND date_part('day', en.date) = date_part('day', '" + datetime + "'::TIMESTAMP)" +
                 "  );";
 
         List<Student> allStudents = new ArrayList<>(0);
