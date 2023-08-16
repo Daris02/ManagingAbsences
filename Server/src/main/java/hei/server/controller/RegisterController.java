@@ -30,12 +30,12 @@ public class RegisterController {
     }
 
     @GetMapping("/present")
-    public List<Student> findAllStudentsPresent(@RequestBody Register register) {
-        return registerService.findAllStudentsPresent(register);
+    public List<Student> findAllStudentsPresent(@RequestBody String datetime) {
+        return registerService.findAllStudentsPresent(datetime);
     }
 
     @GetMapping("/absent")
-    public List<Student> findAllStudentsAbsent(@RequestBody Register register) {
-        return registerService.findAllStudentsAbsent(register);
+    public List<Student> findAllStudentsAbsent(@RequestBody String datetime) {
+        return registerService.findAllStudentsAbsent(datetime);
     }
 }
