@@ -6,7 +6,7 @@ For create web server (REST API) using JDBC to connect to database.
 
 ## MCD
 
-![image_mcd](database.png)
+![image_mcd](Server/image/database.png)
 
 <br/>
 <hr/>
@@ -21,12 +21,13 @@ This project use and you need if you would like clone them :
 ### Installation
 Befor all, you should need execute `data.sql`  ( in ``/Server/src/main/resources/data.sql``)
 
-If you have a IDE, just run this app on Server class `Server.java` and in your environment vairable add this configuration :
-```js
-DB_URL = jdbc:postgresql://localhost:5432/[database_name]
-DB_USERNAME = [user_name_of_postgresql]
-DB_PASSWORD = [password_of_postgresql]
-```
+For run this app change variable in `/Server/src/main/resources/application.properties`
+
+    -    DB_URL => jdbc:postgresql://localhost:5432/{{database_name}}
+    -    DB_USERNAME => {{user_name_of_postgresql}}
+    -    DB_PASSWORD => {{password_of_postgresql}}
+
+
 Or run app on directory ``Server`` execute command following :
 
 ```sh
