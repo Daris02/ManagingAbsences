@@ -1,0 +1,302 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "ManagingAbsences",
+    "dateExported": "2023-08-17T15:09:53.556Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "Register",
+            "containerId": "",
+            "created": "2023-08-17T11:37:33.242Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "Group",
+            "containerId": "",
+            "created": "2023-08-17T11:42:02.922Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "Student",
+            "containerId": "",
+            "created": "2023-08-17T11:42:24.250Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "44fdd8f2-271a-44fa-add2-cb887fcd1a3e",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "Present",
+            "url": "{{url}}/register/present",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-08-17T11:37:16.879Z",
+            "modified": "2023-08-17T15:00:28.329Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "text",
+                "raw": "2023-08-16",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9f8da6be-541e-42cd-8fb2-111d5d937401",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "Absent",
+            "url": "{{url}}/register/absent",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-08-17T11:40:23.062Z",
+            "modified": "2023-08-17T15:00:11.176Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "text",
+                "raw": "2023-08-16",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "aabc8f2a-6de4-45d7-87d3-98e6a05513db",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "Groups",
+            "url": "http://localhost:8080/groups",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-08-17T11:43:12.470Z",
+            "modified": "2023-08-17T11:43:12.470Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9539b826-6336-4aca-99d2-89492e8e4aec",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "Students",
+            "url": "{{url}}/students",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-08-17T11:43:49.663Z",
+            "modified": "2023-08-17T14:54:26.402Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "00bfbcb9-90eb-405e-9d55-cf693856db74",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "",
+            "name": "Ping",
+            "url": "{{url}}/ping",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-08-17T14:44:03.632Z",
+            "modified": "2023-08-17T14:44:21.047Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dd6a6634-62a8-45b7-9a93-540e25bf6f00",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "GroupById",
+            "url": "{{url}}/groups/1",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-08-17T14:45:07.396Z",
+            "modified": "2023-08-17T14:45:31.540Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c4a3576d-64f7-4feb-8d77-6f022c07a4a2",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "Add Group",
+            "url": "{{url}}/groups",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-08-17T14:45:53.626Z",
+            "modified": "2023-08-17T14:46:36.227Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"H7\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0aad5104-47b1-40c2-9b69-8d2b9b42afc5",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "Update Group",
+            "url": "{{url}}/groups",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2023-08-17T14:47:21.076Z",
+            "modified": "2023-08-17T15:07:10.646Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 5,\n  \"name\": \"h5\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a9f6d8e4-434a-49a7-ac2c-f34014f82e13",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "139a458d-73b8-4528-8fbc-0b7cc0b1e5a7",
+            "name": "Delete Group",
+            "url": "{{url}}/groups/5",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2023-08-17T14:49:59.451Z",
+            "modified": "2023-08-17T14:50:11.042Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a658c48d-a957-4457-bacf-aa652394a0ea",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "StudentById",
+            "url": "{{url}}/students/1",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-08-17T14:51:05.783Z",
+            "modified": "2023-08-17T14:51:14.306Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a786c349-e3fd-4948-8ba1-02b8d58c22b9",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "Add Student",
+            "url": "{{url}}/students",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-08-17T14:51:28.682Z",
+            "modified": "2023-08-17T15:08:00.891Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"refStudent\": \"STD22012\",\n    \"firstName\": \"Finne\",\n    \"lastName\": \"Johnson\",\n    \"email\": \"finne@gmail.com\",\n    \"gender\": \"M\",\n    \"active\": true,\n    \"idGroup\": 3\n  }\n  ",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "821d7712-d9ad-4511-8e10-0164825aa0b2",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "Update Student",
+            "url": "{{url}}/students",
+            "method": "PUT",
+            "sortNum": 120000,
+            "created": "2023-08-17T14:54:51.365Z",
+            "modified": "2023-08-17T15:08:58.798Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"id\": 3,\n    \"refStudent\": \"STD22003\",\n    \"firstName\": \"Clark\",\n    \"lastName\": \"Kent\",\n    \"email\": \"clark@gmail.com\",\n    \"gender\": \"M\",\n    \"active\": false,\n    \"idGroup\": 4\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "481a0c45-2c5c-444c-9463-a694c540a337",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "3062a52f-c364-4255-8b78-60c907659df9",
+            "name": "Delete Student",
+            "url": "{{url}}/students/6",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2023-08-17T14:56:02.105Z",
+            "modified": "2023-08-17T14:56:19.143Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "967f00f5-e093-4429-92a9-d1470d3182f5",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "All Register Entry",
+            "url": "{{url}}/register/entry",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2023-08-17T15:00:49.480Z",
+            "modified": "2023-08-17T15:01:09.928Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1f41cfec-4383-4bf5-a38b-3fcdcacc64b5",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "All Register Exit",
+            "url": "{{url}}/register/exit",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-08-17T15:01:35.280Z",
+            "modified": "2023-08-17T15:01:45.618Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "04cbe948-1d04-4412-bb2f-af478384413b",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "Add Register Entry",
+            "url": "{{url}}/register/1/entry",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-08-17T15:02:28.382Z",
+            "modified": "2023-08-17T15:03:41.809Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c9002e56-010e-4c1c-8361-f686f8dbe702",
+            "colId": "32f48b33-067d-4a9f-acc6-d78f76a11937",
+            "containerId": "64aa523b-e5c5-49c4-b9dc-a7885ec34def",
+            "name": "Add Register Exit",
+            "url": "{{url}}/register/1/exit",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2023-08-17T15:03:54.233Z",
+            "modified": "2023-08-17T15:04:07.938Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "envId": "8f0aba37-923b-4efa-9715-8c942dda2f27"
+    }
+}
