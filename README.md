@@ -35,3 +35,4 @@ $ cd Server
 $ mvn install
 $ mvn spring-boot:run
 ```
+NB : if you need test api for quickly, import file `Request_Collection_ManagingAbsences.json`
