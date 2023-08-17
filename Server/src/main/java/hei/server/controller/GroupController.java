@@ -1,7 +1,6 @@
 package hei.server.controller;
 
 import hei.server.model.Group;
-import hei.server.model.Student;
 import hei.server.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
