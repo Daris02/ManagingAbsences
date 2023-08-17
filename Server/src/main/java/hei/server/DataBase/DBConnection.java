@@ -10,17 +10,17 @@ import java.sql.SQLException;
 
 @Configuration
 public class DBConnection {
-    @Value("${DB_URL}")
-    private static String url;
+    @Value("${spring.datasource.url}")
+    private String url;
 
-    @Value("${DB_USERNAME}")
-    private static String username;
+    @Value("${spring.datasource.username}")
+    private String username;
 
-    @Value("${DB_PASSWORD}")
-    private static String password;
+    @Value("${spring.datasource.password}")
+    private String password;
 
     @Bean
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 url,
                 username,

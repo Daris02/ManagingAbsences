@@ -4,22 +4,27 @@ import hei.server.model.Register;
 import hei.server.model.Student;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hei.server.DataBase.DBConnection.getConnection;
-
 @Repository
 public class RegisterRepository {
+    private final Connection connection;
+
+    public RegisterRepository(Connection connection) {
+        this.connection = connection;
+    }
+
     public List<Register> getAll(String type) {
         String sql = "SELECT * FROM "+ type +" ORDER BY date ; ";
 
         List<Register> allRegisters = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allRegisters.add(new Register(
@@ -39,7 +44,7 @@ public class RegisterRepository {
     public void addRegister(Integer id, String type) {
         String sql = "INSERT INTO "+ type +" (id_student) VALUES (" + id + "); ";
         try {
-            getConnection().createStatement().executeUpdate(sql);
+            connection.createStatement().executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +68,7 @@ public class RegisterRepository {
         List<Student> allStudents = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudents.add(new Student(
@@ -104,7 +109,7 @@ public class RegisterRepository {
         List<Student> allStudents = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudents.add(new Student(

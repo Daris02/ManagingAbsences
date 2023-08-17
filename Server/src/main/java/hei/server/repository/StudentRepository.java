@@ -3,22 +3,27 @@ package hei.server.repository;
 import hei.server.model.Student;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hei.server.DataBase.DBConnection.getConnection;
-
 @Repository
 public class StudentRepository {
+    private final Connection connection;
+
+    public StudentRepository(Connection connection) {
+        this.connection = connection;
+    }
+
     public List<Student> getAll() {
         String sql = "SELECT * FROM \"student\" ORDER BY id ;";
 
         List<Student> allStudent = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudent.add(new Student(
@@ -44,7 +49,7 @@ public class StudentRepository {
         String sql = "SELECT * FROM \"student\" WHERE id = " + id + " ;";
 
         try {
-            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
             if (resultSet.next()) {
                 return new Student(
@@ -74,7 +79,7 @@ public class StudentRepository {
                     " '" + student.getGender() + "', " +
                     student.getActive() + ", " +
                     student.getIdGroup() + "); ";
-            getConnection().createStatement().executeUpdate(sql);
+            connection.createStatement().executeUpdate(sql);
             return student;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +99,7 @@ public class StudentRepository {
                     ", id_group = " + student.getIdGroup() +
                     " WHERE id = " + student.getId() + " ;";
 
-            getConnection().createStatement().executeUpdate(sql);
+            connection.createStatement().executeUpdate(sql);
             return getById(student.getId());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -106,7 +111,7 @@ public class StudentRepository {
         try {
             String sql = "DELETE FROM \"group\" WHERE id = " + id + " ;";
 
-            getConnection().createStatement().executeUpdate(sql);
+            connection.createStatement().executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
