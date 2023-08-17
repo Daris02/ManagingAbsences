@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hei.server.DataBase.StatementDB.createStatement;
+import static hei.server.DataBase.DBConnection.getConnection;
 
 @Repository
 public class StudentRepository {
@@ -18,7 +18,7 @@ public class StudentRepository {
         List<Student> allStudent = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = createStatement().executeQuery(sql);
+            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudent.add(new Student(
@@ -44,7 +44,7 @@ public class StudentRepository {
         String sql = "SELECT * FROM \"student\" WHERE id = " + id + " ;";
 
         try {
-            ResultSet resultSet = createStatement().executeQuery(sql);
+            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
 
             if (resultSet.next()) {
                 return new Student(
@@ -74,7 +74,7 @@ public class StudentRepository {
                     " '" + student.getGender() + "', " +
                     student.getActive() + ", " +
                     student.getIdGroup() + "); ";
-            createStatement().executeUpdate(sql);
+            getConnection().createStatement().executeUpdate(sql);
             return student;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +94,7 @@ public class StudentRepository {
                     ", id_group = " + student.getIdGroup() +
                     " WHERE id = " + student.getId() + " ;";
 
-            createStatement().executeUpdate(sql);
+            getConnection().createStatement().executeUpdate(sql);
             return getById(student.getId());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -106,7 +106,7 @@ public class StudentRepository {
         try {
             String sql = "DELETE FROM \"group\" WHERE id = " + id + " ;";
 
-            createStatement().executeUpdate(sql);
+            getConnection().createStatement().executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

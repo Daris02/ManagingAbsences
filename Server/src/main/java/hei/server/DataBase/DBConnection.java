@@ -1,26 +1,30 @@
 package hei.server.DataBase;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
+@Configuration
 public class DBConnection {
-    private static final String databaseName = System.getenv("DB_URL");
-    private static final String user = System.getenv("DB_USERNAME");
-    private static final String password = System.getenv("DB_PASSWORD");
-    private static Connection connection;
+    @Value("${DB_URL}")
+    private static String url;
 
-    // Public Method to create connection
-    public static Connection createConnection() {
-        try {
-            if (connection == null) {
-                connection = DriverManager.getConnection(
-                        databaseName, user, password);
-                return connection;
-            }
-            return connection;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return connection;
+    @Value("${DB_USERNAME}")
+    private static String username;
+
+    @Value("${DB_PASSWORD}")
+    private static String password;
+
+    @Bean
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(
+                url,
+                username,
+                password
+        );
     }
 }

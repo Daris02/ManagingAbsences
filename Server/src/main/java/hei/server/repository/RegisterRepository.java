@@ -1,6 +1,5 @@
 package hei.server.repository;
 
-import static hei.server.DataBase.StatementDB.createStatement;
 import hei.server.model.Register;
 import hei.server.model.Student;
 import org.springframework.stereotype.Repository;
@@ -10,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static hei.server.DataBase.DBConnection.getConnection;
+
 @Repository
 public class RegisterRepository {
     public List<Register> getAll(String type) {
@@ -18,7 +19,7 @@ public class RegisterRepository {
         List<Register> allRegisters = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = createStatement().executeQuery(sql);
+            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allRegisters.add(new Register(
@@ -38,7 +39,7 @@ public class RegisterRepository {
     public void addRegister(Integer id, String type) {
         String sql = "INSERT INTO "+ type +" (id_student) VALUES (" + id + "); ";
         try {
-            createStatement().executeUpdate(sql);
+            getConnection().createStatement().executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -62,7 +63,7 @@ public class RegisterRepository {
         List<Student> allStudents = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = createStatement().executeQuery(sql);
+            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudents.add(new Student(
@@ -103,7 +104,7 @@ public class RegisterRepository {
         List<Student> allStudents = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = createStatement().executeQuery(sql);
+            ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
 
             while (resultSet.next()) {
                 allStudents.add(new Student(
