@@ -28,7 +28,7 @@ For run this app change variable in `/Server/src/main/resources/application.prop
     -    DB_PASSWORD => {{password_of_postgresql}}
 
 
-Or run app on directory ``Server`` execute command following :
+Or run app on directory ``Server`` execute following command  :
 
 ```sh
 $ cd Server
