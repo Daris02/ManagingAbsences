@@ -109,7 +109,7 @@ public class StudentRepository {
 
     public void deleteStudentById(Integer id) {
         try {
-            String sql = "DELETE FROM \"group\" WHERE id = " + id + " ;";
+            String sql = "DELETE FROM \"student\" WHERE id = " + id + " ;";
 
             connection.createStatement().executeUpdate(sql);
         } catch (SQLException e) {

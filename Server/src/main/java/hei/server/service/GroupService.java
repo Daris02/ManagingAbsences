@@ -35,8 +35,8 @@ public class GroupService {
         return groupRepository.add(new_group);
     }
 
-    public Group updateGroup(Integer id, Group group) {
-        Group oldGroup = groupRepository.getById(id);
+    public Group updateGroup(Group group) {
+        Group oldGroup = groupRepository.getById(group.getId());
         if (Objects.equals(oldGroup.getName(), group.getName())) {
             return oldGroup;
         }

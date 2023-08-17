@@ -32,9 +32,9 @@ public class StudentController {
         return studentService.addNewStudent(student);
     }
 
-    @PutMapping("/{id}")
-    public Student updateStudentById(@PathVariable Integer id, @RequestBody Student student) {
-        return studentService.updateStudent(id, student);
+    @PutMapping
+    public Student updateStudentById(@RequestBody Student student) {
+        return studentService.updateStudent(student);
     }
 
     @DeleteMapping("/{id}")

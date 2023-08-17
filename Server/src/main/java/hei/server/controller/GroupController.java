@@ -32,9 +32,9 @@ public class GroupController {
         return groupService.addNewGroup(group);
     }
 
-    @PutMapping("/{id}")
-    public Group updateGroup(@PathVariable Integer id, @RequestBody Group group) {
-        return groupService.updateGroup(id, group);
+    @PutMapping
+    public Group updateGroup(@RequestBody Group group) {
+        return groupService.updateGroup(group);
     }
 
     @DeleteMapping("/{id}")

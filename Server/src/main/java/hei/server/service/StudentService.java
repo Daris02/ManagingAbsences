@@ -35,8 +35,8 @@ public class StudentService {
         return studentRepository.add(new_student);
     }
 
-    public Student updateStudent(Integer id, Student student) {
-        Student oldStudent = studentRepository.getById(id);
+    public Student updateStudent(Student student) {
+        Student oldStudent = studentRepository.getById(student.getId());
         if (!Objects.equals(oldStudent.getIdGroup(), student.getIdGroup())) {
             oldStudent.setIdGroup(student.getIdGroup());
         }
