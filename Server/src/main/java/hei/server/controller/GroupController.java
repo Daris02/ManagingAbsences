@@ -39,7 +39,6 @@ public class GroupController {
 
     @DeleteMapping("/{id}")
     public String deleteGroupById(@PathVariable Integer id) {
-        groupService.deleteGroupById(id);
-        return "Delete group successfully";
+        return groupService.deleteGroupById(id);
     }
 }

@@ -43,7 +43,11 @@ public class GroupService {
         return groupRepository.updateGroup(group);
     }
 
-    public void deleteGroupById(Integer id) {
+    public String deleteGroupById(Integer id) {
+        if (groupRepository.getById(id).getId() == null) {
+            return "Group not exist";
+        }
         groupRepository.deleteGroupById(id);
+        return "Delete group successfully";
     }
 }

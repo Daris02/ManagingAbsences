@@ -61,7 +61,11 @@ public class StudentService {
         return studentRepository.updateStudent(oldStudent);
     }
 
-    public void deleteStudentById(Integer id) {
+    public String deleteStudentById(Integer id) {
+        if (studentRepository.getById(id).getId() == null) {
+            return "Student not exist";
+        }
         studentRepository.deleteStudentById(id);
+        return "Delete student successfully";
     }
 }

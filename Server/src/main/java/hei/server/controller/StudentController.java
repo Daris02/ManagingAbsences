@@ -39,7 +39,6 @@ public class StudentController {
 
     @DeleteMapping("/{id}")
     public String deleteStudentById(@PathVariable Integer id) {
-        studentService.deleteStudentById(id);
-        return "Delete student successfully";
+        return studentService.deleteStudentById(id);
     }
 }
