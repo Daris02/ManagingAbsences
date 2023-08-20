@@ -1,0 +1,346 @@
+{
+    "info": {
+        "_postman_id": "cf784f99-28fc-475c-b040-a01afe064823",
+        "name": "ManagingAbsences",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Register",
+            "item": [
+                {
+                    "name": "Present",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/register/present",
+                            "path": [
+                                "register",
+                                "present"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            },
+                            "raw": "2023-08-16"
+                        }
+                    }
+                },
+                {
+                    "name": "Absent",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/register/absent",
+                            "path": [
+                                "register",
+                                "absent"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            },
+                            "raw": "2023-08-16"
+                        }
+                    }
+                },
+                {
+                    "name": "All Register Entry",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/register/entry",
+                            "path": [
+                                "register",
+                                "entry"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "All Register Exit",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/register/exit",
+                            "path": [
+                                "register",
+                                "exit"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Register Entry",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/register/1/entry",
+                            "path": [
+                                "register",
+                                "1",
+                                "entry"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Register Exit",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/register/1/exit",
+                            "path": [
+                                "register",
+                                "1",
+                                "exit"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Group",
+            "item": [
+                {
+                    "name": "Groups",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/groups",
+                            "path": [
+                                "groups"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GroupById",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/groups/1",
+                            "path": [
+                                "groups",
+                                "1"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Group",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/groups",
+                            "path": [
+                                "groups"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"H7\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update Group",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/groups",
+                            "path": [
+                                "groups"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"id\": 6,\n  \"name\": \"H6\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Group",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/groups/5",
+                            "path": [
+                                "groups",
+                                "5"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Student",
+            "item": [
+                {
+                    "name": "Students",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/students",
+                            "path": [
+                                "students"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "StudentById",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}/students/1",
+                            "path": [
+                                "students",
+                                "1"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Student",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{url}}/students",
+                            "path": [
+                                "students"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"refStudent\": \"STD22012\",\n    \"firstName\": \"Finne\",\n    \"lastName\": \"Johnson\",\n    \"email\": \"finne@gmail.com\",\n    \"gender\": \"M\",\n    \"active\": true,\n    \"idGroup\": 3\n  }\n  "
+                        }
+                    }
+                },
+                {
+                    "name": "Update Student",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}/students",
+                            "path": [
+                                "students"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "  {\n    \"id\": 3,\n    \"refStudent\": \"STD22003\",\n    \"firstName\": \"Clark\",\n    \"lastName\": \"Kent\",\n    \"email\": \"clark@gmail.com\",\n    \"gender\": \"M\",\n    \"active\": false,\n    \"idGroup\": 4\n  }"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Student",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}/students/6",
+                            "path": [
+                                "students",
+                                "6"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Ping",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{url}}/ping",
+                    "path": [
+                        "ping"
+                    ],
+                    "host": [
+                        "{{url}}"
+                    ]
+                }
+            }
+        }
+    ]
+}
