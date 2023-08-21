@@ -2,20 +2,17 @@ package hei.server.controller;
 
 import hei.server.model.Group;
 import hei.server.service.GroupService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping(path="/groups")
 public class GroupController {
     private final GroupService groupService;
-
-    @Autowired
-    public GroupController(GroupService groupService) {
-        this.groupService = groupService;
-    }
 
     @GetMapping
     public List<Group> findAllGroups() {

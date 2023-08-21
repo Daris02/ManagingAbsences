@@ -1,6 +1,8 @@
 package hei.server.repository;
 
 import hei.server.model.Student;
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -10,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class StudentRepository {
     private final Connection connection;
-
-    public StudentRepository(Connection connection) {
-        this.connection = connection;
-    }
 
     public List<Student> getAll() {
         String sql = "SELECT * FROM \"student\" ORDER BY id ;";

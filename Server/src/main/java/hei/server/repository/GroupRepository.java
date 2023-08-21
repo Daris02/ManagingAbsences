@@ -1,6 +1,8 @@
 package hei.server.repository;
 
 import hei.server.model.Group;
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -10,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class GroupRepository {
     private final Connection connection;
-
-    public GroupRepository(Connection connection) {
-        this.connection = connection;
-    }
 
     public List<Group> getAll() {
         String sql = "SELECT * FROM \"group\" ORDER BY id ;";

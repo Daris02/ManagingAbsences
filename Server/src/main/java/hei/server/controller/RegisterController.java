@@ -3,20 +3,17 @@ package hei.server.controller;
 import hei.server.model.Register;
 import hei.server.model.Student;
 import hei.server.service.RegisterService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/register")
 public class RegisterController {
     private final RegisterService registerService;
-
-    @Autowired
-    public RegisterController(RegisterService registerService) {
-        this.registerService = registerService;
-    }
 
     @GetMapping("/{type}")
     public List<Register> findAllRegisters(@PathVariable String type) {

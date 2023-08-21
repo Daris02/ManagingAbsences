@@ -1,21 +1,17 @@
 package hei.server.controller;
 
 import hei.server.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import hei.server.service.StudentService;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping(path = "/students")
 public class StudentController {
     private final StudentService studentService;
-
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @GetMapping
     public List<Student> findAllStudent() {

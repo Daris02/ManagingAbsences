@@ -2,6 +2,8 @@ package hei.server.repository;
 
 import hei.server.model.Register;
 import hei.server.model.Student;
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -11,12 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class RegisterRepository {
     private final Connection connection;
-
-    public RegisterRepository(Connection connection) {
-        this.connection = connection;
-    }
 
     public List<Register> getAll(String type) {
         String sql = "SELECT * FROM "+ type +" ORDER BY date ; ";

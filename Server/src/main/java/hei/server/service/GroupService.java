@@ -2,20 +2,17 @@ package hei.server.service;
 
 import hei.server.model.Group;
 import hei.server.repository.GroupRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class GroupService {
     private final GroupRepository groupRepository;
-
-    @Autowired
-    public GroupService(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-    }
 
     public List<Group> findAllGroups() {
         return groupRepository.getAll();

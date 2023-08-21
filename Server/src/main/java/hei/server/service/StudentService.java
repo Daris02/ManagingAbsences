@@ -1,21 +1,17 @@
 package hei.server.service;
 
 import hei.server.repository.StudentRepository;
+import lombok.AllArgsConstructor;
 import hei.server.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class StudentService {
     private final StudentRepository studentRepository;
-
-    @Autowired
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
     public List<Student> findAllStudents() {
         return studentRepository.getAll();
