@@ -34,10 +34,10 @@ public class GroupService {
 
     public Group updateGroup(Group group) {
         Group oldGroup = groupRepository.getById(group.getId());
-        if (Objects.equals(oldGroup.getName(), group.getName())) {
-            return oldGroup;
+        if (group.getName() != null &&  !Objects.equals(oldGroup.getName(), group.getName())) {
+            return groupRepository.updateGroup(group);
         }
-        return groupRepository.updateGroup(group);
+        return oldGroup;
     }
 
     public String deleteGroupById(Integer id) {
