@@ -33,7 +33,6 @@ public class StudentService {
 
     public Student updateStudent(Student student) {
         Student oldStudent = studentRepository.getById(student.getId());
-        System.out.println(oldStudent);
         if (student.getIdGroup() != null && !Objects.equals(oldStudent.getIdGroup(), student.getIdGroup())) {
             oldStudent.setIdGroup(student.getIdGroup());
         }
