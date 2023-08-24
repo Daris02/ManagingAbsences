@@ -9,10 +9,10 @@ CREATE TABLE "group" (
 -----------------------------------
 -- Insert "group"
 INSERT INTO "group" VALUES
-                        (1, 'H1'),
-                        (2, 'H2'),
-                        (3, 'H3'),
-                        (4, 'H4');
+        (1, 'H1'),
+        (2, 'H2'),
+        (3, 'H3'),
+        (4, 'H4');
 
 -----------------------------------
 -- Create table "student"
@@ -63,7 +63,7 @@ CREATE TABLE "exit" (
 );
 
 -----------------------------------
--- Insert "entry"
+-- Insert "exit"
 INSERT INTO "exit" (date, id_student) VALUES
         ('2023-09-01 14:23:00', 1),
         ('2023-09-01 13:15:00', 2),
