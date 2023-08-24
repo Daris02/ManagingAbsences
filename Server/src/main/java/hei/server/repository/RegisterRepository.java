@@ -58,7 +58,7 @@ public class RegisterRepository {
                         "WHERE " +
                         "    ((st.id IN (" +
                         "        SELECT entry.id_student FROM entry" +
-                        "    )) OR (date_part('hour', ex.date) >= date_part('hour', en.date) + 3))" +
+                        "    )) AND (date_part('hour', ex.date) >= date_part('hour', en.date) + 2))" +
                         "    AND date_part('year', '" + datetime + "'::TIMESTAMP) = date_part('year', en.date)" +
                         "    AND date_part('month', '" + datetime + "'::TIMESTAMP) = date_part('month', en.date)" +
                         "    AND date_part('day', '" + datetime + "'::TIMESTAMP) = date_part('day', en.date)" +
@@ -93,7 +93,6 @@ public class RegisterRepository {
         String sql = "SELECT" +
                 "    st.* " +
                 "FROM \"student\" st " +
-                "    FULL OUTER JOIN \"entry\" en ON st.id = en.id_student " +
                 "WHERE " +
                 "    st.id NOT IN (" +
                 "        SELECT" +
@@ -102,7 +101,18 @@ public class RegisterRepository {
                 "            INNER JOIN \"entry\" en ON st.id = en.id_student " +
                 "        WHERE date_part('year', en.date) = date_part('year', '" + datetime + "'::TIMESTAMP)" +
                 "        AND date_part('month', en.date) = date_part('month', '" + datetime + "'::TIMESTAMP)" +
+                "        AND date_part('day', en.date) = date_part('day', '" + datetime + "'::TIMESTAMP) )" +
+                "OR " +
+                "    st.id IN (" +
+                "        SELECT" +
+                "            st.id" +
+                "        FROM \"student\" st" +
+                "            INNER JOIN \"entry\" en ON st.id = en.id_student " +
+                "            INNER JOIN \"exit\" ex ON st.id = ex.id_student " +
+                "        WHERE date_part('year', en.date) = date_part('year', '" + datetime + "'::TIMESTAMP)" +
+                "        AND date_part('month', en.date) = date_part('month', '" + datetime + "'::TIMESTAMP)" +
                 "        AND date_part('day', en.date) = date_part('day', '" + datetime + "'::TIMESTAMP)" +
+                "        AND (date_part('hour', ex.date) < date_part('hour', en.date) + 2)" +
                 "  );";
 
         List<Student> allStudents = new ArrayList<>(0);
