@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @AllArgsConstructor
 public class GroupRepository {
-    private final Connection connection;
+    private Connection connection;
 
     public List<Group> getAll() {
         String sql = """

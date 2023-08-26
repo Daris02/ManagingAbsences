@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 @AllArgsConstructor
 public class StudentRepository {
-    private final Connection connection;
+    private Connection connection;
 
     public List<Student> getAll() {
         String sql = "SELECT * FROM \"student\" ORDER BY id ;";

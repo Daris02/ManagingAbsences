@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @AllArgsConstructor
 public class RegisterRepository {
-    private final Connection connection;
+    private Connection connection;
 
     public List<Register> getAll(String type) {
         String sql = "SELECT * FROM "+ type +" ORDER BY date ; ";
