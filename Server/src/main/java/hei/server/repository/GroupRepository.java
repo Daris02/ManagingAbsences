@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,12 +18,15 @@ public class GroupRepository {
     private final Connection connection;
 
     public List<Group> getAll() {
-        String sql = "SELECT * FROM \"group\" ORDER BY id ;";
-
+        String sql = """
+                    SELECT * FROM "group" ORDER BY id;
+                    """;
         List<Group> allGroup = new ArrayList<>(0);
 
         try {
-            ResultSet resultSet = connection.createStatement().executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 allGroup.add(new Group(
@@ -33,16 +37,20 @@ public class GroupRepository {
             return allGroup;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new ArrayList<>();
     }
 
     public Group getById(Integer id) {
-        String sql = "SELECT * FROM \"group\" WHERE id = " + id + " ;";
-
+        String sql = """
+                    SELECT * FROM "group" WHERE id = ?
+                    """;
         try {
-            ResultSet resultSet = connection.createStatement().executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 return new Group(
@@ -51,42 +59,60 @@ public class GroupRepository {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new Group();
     }
 
     public Group add(Group group) {
         try {
-            String sql = "INSERT INTO \"group\" VALUES ("+ group.getId() + ", '" + group.getName() + "' );";
-            connection.createStatement().executeUpdate(sql);
+            String sql = """
+                        INSERT INTO "group" VALUES (?, ?);
+                        """;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, group.getId());
+            preparedStatement.setString(2, group.getName());
+
+            preparedStatement.executeUpdate();
+
             return group;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new Group();
     }
 
     public Group updateGroup(Group group) {
         try {
-            String sql = "UPDATE \"group\" SET name = '" + group.getName()
-                    + "' WHERE id = " + group.getId() + " ;";
+            String sql = """
+                        UPDATE "group" SET
+                            name = ?
+                        WHERE id = ?
+                        """;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, group.getName());
+            preparedStatement.setInt(2, group.getId());
 
-            connection.createStatement().executeUpdate(sql);
+            preparedStatement.executeUpdate();
+
             return getById(group.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return getById(group.getId());
     }
 
     public void deleteGroupById(Integer id) {
         try {
-            String sql = "DELETE FROM \"group\" WHERE id = " + id + ";";
+            String sql = """
+                        DELETE  FROM "group" WHERE id = ?;
+                        """;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
 
-            connection.createStatement().executeUpdate(sql);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
