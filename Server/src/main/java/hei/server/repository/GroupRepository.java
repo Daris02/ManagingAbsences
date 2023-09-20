@@ -2,19 +2,10 @@ package hei.server.repository;
 
 import hei.server.model.Group;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface GroupRepository {
-    List<Group> getAll();
-
-    Group getById(Integer id);
-
-    Group add(Group group);
-
-    Group updateGroup(Group group);
-
-    void deleteGroupById(Integer id);
+public interface GroupRepository extends JpaRepository<Group, Integer> {
+    Group updateGroupById(Group group);
 }
