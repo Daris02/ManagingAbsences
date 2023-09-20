@@ -15,36 +15,36 @@ public class GroupService {
     private final GroupRepository groupRepository;
 
     public List<Group> findAllGroups() {
-        return groupRepository.getAll();
+        return groupRepository.findAll();
     }
 
     public Group findGroupById(Integer id) {
-        if (groupRepository.getById(id).getId() == null) {
+        if (groupRepository.getReferenceById(id).getId() == null) {
             return null;
         }
-        return groupRepository.getById(id);
+        return groupRepository.getReferenceById(id);
     }
 
     public Group addNewGroup(Group group) {
-        List<Group> groups = groupRepository.getAll();
+        List<Group> groups = groupRepository.findAll();
         Integer lastId = groups.size()+1;
         Group new_group = new Group(lastId, group.getName());
-        return groupRepository.add(new_group);
+        return groupRepository.save(new_group);
     }
 
     public Group updateGroup(Group group) {
-        Group oldGroup = groupRepository.getById(group.getId());
+        Group oldGroup = groupRepository.getReferenceById(group.getId());
         if (group.getName() != null &&  !Objects.equals(oldGroup.getName(), group.getName())) {
-            return groupRepository.updateGroup(group);
+            return groupRepository.updateGroupById(group);
         }
         return oldGroup;
     }
 
     public String deleteGroupById(Integer id) {
-        if (groupRepository.getById(id).getId() == null) {
+        if (groupRepository.getReferenceById(id).getId() == null) {
             return "Group not exist";
         }
-        groupRepository.deleteGroupById(id);
+        groupRepository.deleteById(id);
         return "Delete group successfully";
     }
 }

@@ -14,27 +14,27 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public List<Student> findAllStudents() {
-        return studentRepository.getAll();
+        return studentRepository.findAll();
     }
 
     public Student findStudentById(Integer id) {
-        if (studentRepository.getById(id).getId() == null) {
+        if (studentRepository.getReferenceById(id) == null) {
             return null;
         }
-        return studentRepository.getById(id);
+        return studentRepository.getReferenceById(id);
     }
 
     public Student addNewStudent(Student std) {
-        List<Student> students = studentRepository.getAll();
+        List<Student> students = studentRepository.findAll();
         Integer lastId = students.size()+1;
-        Student new_student = new Student(lastId, std.getRefStudent(), std.getFirstName(), std.getLastName(), std.getEmail(), std.getGender(), std.getActive(), std.getIdGroup());
-        return studentRepository.add(new_student);
+        Student new_student = new Student(lastId, std.getRefStudent(), std.getFirstName(), std.getLastName(), std.getEmail(), std.getGender(), std.getActive(), std.getGroup());
+        return studentRepository.save(new_student);
     }
 
     public Student updateStudent(Student student) {
-        Student oldStudent = studentRepository.getById(student.getId());
-        if (student.getIdGroup() != null && !Objects.equals(oldStudent.getIdGroup(), student.getIdGroup())) {
-            oldStudent.setIdGroup(student.getIdGroup());
+        Student oldStudent = studentRepository.getReferenceById(student.getId());
+        if (student.getGroup().getId() != null && !Objects.equals(oldStudent.getGroup().getId(), student.getGroup().getId())) {
+            oldStudent.setGroup(student.getGroup());
         }
         if (student.getActive() != null && oldStudent.getActive() != student.getActive()) {
             oldStudent.setActive(student.getActive());
@@ -58,10 +58,10 @@ public class StudentService {
     }
 
     public String deleteStudentById(Integer id) {
-        if (studentRepository.getById(id).getId() == null) {
+        if (studentRepository.getReferenceById(id).getId() == null) {
             return "Student not exist";
         }
-        studentRepository.deleteStudentById(id);
+        studentRepository.deleteById(id);
         return "Delete student successfully";
     }
 }
