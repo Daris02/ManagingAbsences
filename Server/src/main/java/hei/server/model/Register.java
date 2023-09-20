@@ -1,18 +1,26 @@
 package hei.server.model;
 
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Entity
+@Data
 public class Register implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column
     private Integer id;
+
+    @CreationTimestamp
     private Timestamp date;
-    private Integer idStudent;
+
+    @ManyToOne
+    private Student student;
 }
